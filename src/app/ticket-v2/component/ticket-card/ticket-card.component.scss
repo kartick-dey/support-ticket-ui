@@ -1,0 +1,93 @@
+.ticket-list-card {
+//   box-shadow: 5px;
+  padding: 5px;
+  background-color: #eee;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+//   box-shadow: 5px 5px #d8d8d8;
+}
+
+.card-title-sec {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.card-title {
+  cursor: pointer;
+}
+
+.card-ticket-num-contact-sec {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  // grid-column-gap: 5px;
+  gap: 10px;
+}
+
+.card-ticket-num {
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background-color: #d8d7d7;
+}
+
+.card-contact-name {
+  font-size: small;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.card-ticket-time-sec {
+  padding: 5px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+}
+
+.card-ticket-time-icon {
+  margin-right: 5px;
+  font-size: medium;
+}
+
+.card-ticket-status-thread-sec {
+  padding: 5px;
+  display: grid;
+  grid-template-columns: 80% 20%;
+  gap: 10px;
+}
+
+.card-ticket-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 5px 0px 5px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background-color: #d8d7d7;
+  font-size: small;
+}
+
+.status-icon {
+  font-size: small;
+  margin-right: 5px;
+}
+
+.card-ticket-thread-count {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+  cursor: pointer;
+}
+
+.thread-icon {
+  font-size: small;
+  margin-right: 5px;
+}

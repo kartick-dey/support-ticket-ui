@@ -1,0 +1,53 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/primeng.min.css";
+// @import 'primeng/resources/themes/saga-blue/theme.css';
+@import "primeicons/primeicons.css";
+@import "primeflex/src/variables";
+@import "primeflex/src/grid";
+@import "./scss//themes/primeng-theme.scss";
+@import "./scss/var.scss";
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: $font-family;
+}
+
+.header {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:host :ng-deep .p-sidebar .p-sidebar-header {
+  padding: 0.3rem !important;
+}
+
+.secondary-btn {
+  background-color: $secondary-btn-backgroud;
+  color: $secondary-btn-color;
+  border: 1px solid #eee;
+}
+
+.secondary-btn:hover {
+  background-color: $secondary-btn-backgroud;
+  color: $secondary-btn-color;
+  border: 1px solid #eee;
+}
+
+.cancel-btn {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+  border: 1px solid #eee;
+}
+
+.cancel-btn:hover {
+  background-color: white !important;
+  border: none !important;
+  color: black !important;
+  border: 1px solid #eee;
+}
+
+::ng-deep .p-toast-top-right {
+  z-index: 10000 !important;
+}

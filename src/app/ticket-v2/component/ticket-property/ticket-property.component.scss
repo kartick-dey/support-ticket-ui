@@ -1,0 +1,68 @@
+.ticket-contact-sec {
+  padding: 5px;
+  background-color: #eee;
+}
+
+.ticket-contact-header {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-icon {
+  font-size: medium;
+  margin-right: 10px;
+}
+
+.header-lbl {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.ticket-contact-name {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 16px;
+  font-size: 0.9rem;
+}
+
+.ticket-contact-email {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 16px;
+  font-size: 0.7rem;
+  font-style: italic;
+}
+
+.tkt-prop {
+  // display: inline-block;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.tkt-prop-lbl {
+  font-size: small;
+  font-weight: 500;
+  font-style: italic;
+  margin-left: 16px;
+}
+
+.tkt-prop-inpt {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+// ::ng-deep .p-calendar .p-inputtext {
+//   width: 9.2rem !important;
+// }
+
+::ng-deep .p-calendar {
+  width: 100% !important;
+}
+
+::ng-deep .p-inputtext {
+  width: 100% !important;
+  padding: 0.2rem;
+}

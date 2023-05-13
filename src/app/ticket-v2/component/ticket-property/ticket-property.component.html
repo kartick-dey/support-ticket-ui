@@ -1,0 +1,183 @@
+<!-- ticket contact -->
+<div class="ticket-contact-sec">
+  <div class="ticket-contact-header">
+    <span class="material-symbols-outlined header-icon"> wc </span>
+    <span class="header-lbl">Contact Information</span>
+  </div>
+  <hr />
+  <div class="ticket-contact-name">
+    <span>{{ ticket.contactName }}</span>
+  </div>
+  <div class="ticket-contact-email">
+    <span>{{ ticket.contactEmail }}</span>
+  </div>
+</div>
+<!-- ticket owner -->
+<div class="ticket-contact-sec">
+  <div class="ticket-contact-header">
+    <span class="material-symbols-outlined header-icon"> copyright </span>
+    <span class="header-lbl">Ticket Owner</span>
+  </div>
+  <hr />
+  <div class="ticket-contact-name">{{ ticket.ticketOwner }}</div>
+</div>
+<!-- ticket properties -->
+<div class="ticket-contact-sec">
+  <div class="ticket-contact-header">
+    <span class="material-symbols-outlined header-icon">
+      real_estate_agent
+    </span>
+    <span class="header-lbl">Ticket Properties</span>
+  </div>
+  <hr />
+  <p-scrollPanel [style]="{ width: '100%', height: 'calc(100vh - 50vh)', 'padding-bottom': '10px' }">
+    <div class="tkt-prop">
+      <div>
+        <span class="tkt-prop-lbl">Due Date</span>
+      </div>
+      <div class="tkt-prop-inpt">
+        <p-calendar
+          [(ngModel)]="ticket.dueDate"
+          [showIcon]="true"
+          inputId="icon"
+          panelStyleClass="calendar"
+          appendTo="body"
+          [baseZIndex]="2000"
+          [monthNavigator]="true"
+          [yearNavigator]="true"
+          yearRange="2000:2030"
+          [showOtherMonths]="false"
+        ></p-calendar>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <div>
+        <span class="tkt-prop-lbl">Priority</span>
+      </div>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="priorityList"
+          [(ngModel)]="ticket.priority"
+          placeholder="Set Priority"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Site</span>
+      <div class="tkt-prop-inpt">
+        <p-chips [(ngModel)]="ticket.sites" separator=","></p-chips>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Company</span>
+      <div class="tkt-prop-inpt">
+        <p-chips [(ngModel)]="ticket.company" separator=","></p-chips>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Classifications</span>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="classificationList"
+          [(ngModel)]="ticket.classifications"
+          placeholder="--None--"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Category</span>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="categoryList"
+          [(ngModel)]="ticket.category"
+          placeholder="--None--"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Sub-Category</span>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="categoryList"
+          [(ngModel)]="ticket.subCategory"
+          placeholder="--None--"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Bug Type</span>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="bugTypeList"
+          [(ngModel)]="ticket.bugType"
+          placeholder="--None--"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Technical Team Assistance Needed</span>
+      <div class="tkt-prop-inpt">
+        <p-dropdown
+          [style]="{ width: '100%' }"
+          *ngIf="ticket"
+          [options]="techAssisNeedList"
+          [(ngModel)]="ticket.technicalTeamAssistanceNeeded"
+          placeholder="--None--"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+        ></p-dropdown>
+      </div>
+    </div>
+    <!-- <div class="ticket-contact-name">{{ ticket.subCategory }}</div> -->
+    <div class="tkt-prop">
+      <span class="tkt-prop-lbl">Description</span>
+      <div class="tkt-prop-inpt">
+        <textarea pInputTextarea></textarea>
+      </div>
+    </div>
+  </p-scrollPanel>
+  <div class="tkt-prop">
+    <div
+      style="
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right: 16px;
+      "
+    >
+      <p-button
+        label="Save"
+        icon="pi pi-save"
+        styleClass="p-button-sm p-button-primary"
+        (click)="onSave()"
+      ></p-button>
+    </div>
+  </div>
+</div>
+'

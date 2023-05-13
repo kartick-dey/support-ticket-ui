@@ -1,0 +1,99 @@
+<ng-container *ngIf="type === 'outline'">
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-secondary"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-success"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-info"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-warning"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-help"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-outlined p-button-danger"
+  ></button>
+</ng-container>
+<ng-container *ngIf="type === 'normal'">
+  <button pButton pRipple type="button" label="{{ label }}"></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-secondary"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-success"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-info"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-warning"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-help"
+  ></button>
+  <button
+    pButton
+    pRipple
+    type="button"
+    label="{{ label }}"
+    class="p-button-danger"
+  ></button>
+</ng-container>
+<ng-container *ngIf="type === 'icon'">
+  <p-button label="{{ label }}" icon="pi pi-check" iconPos="right"></p-button>
+</ng-container>

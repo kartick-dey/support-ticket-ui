@@ -1,0 +1,52 @@
+<div class="main-container">
+  <div class="input-field-sec">
+    <input
+      required="true"
+      type="text"
+      class="p-inputtext-sm"
+      placeholder="First Name"
+      [(ngModel)]="firstName"
+      pInputText
+    />
+  </div>
+  <div class="input-field-sec">
+    <input
+      required="true"
+      type="text"
+      class="p-inputtext-sm"
+      placeholder="Last Name"
+      [(ngModel)]="lastName"
+      pInputText
+    />
+  </div>
+  <div class="input-field-sec">
+    <input
+      required="true"
+      type="text"
+      class="p-inputtext-sm"
+      placeholder="Enter Email"
+      [(ngModel)]="email"
+      pInputText
+    />
+  </div>
+  <div class="input-field-sec">
+    <p-dropdown
+    [style]="{'width': '100%'}"
+      [options]="roleList"
+      placeholder="Select Role"
+      optionLabel="name"
+      optionValue="value"
+      [(ngModel)]="role"
+      appendTo="body"
+    ></p-dropdown>
+  </div>
+  <div class="btn-sec">
+    <p-button
+      label="Create"
+      styleClass="p-button-sm"
+      [loading]="isLoading"
+      (onClick)="onCreate()"
+      [disabled]="disabledBtn()"
+    ></p-button>
+  </div>
+</div>

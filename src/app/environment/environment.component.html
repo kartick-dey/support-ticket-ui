@@ -1,0 +1,53 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <span class="header">Envrioments:</span>
+  </div>
+
+  <div class="p-toolbar-group-right">
+    <p-button
+      label="Add ENV"
+      (click)="openCreateOrEditEnvPanel('New')"
+    ></p-button>
+  </div>
+</p-toolbar>
+
+<div class="main-container">
+  <p-card
+    header="XYX Production"
+    subheader="Card Subheader"
+    [style]="{ width: '360px', margin: '10px' }"
+    styleClass="p-card-shadow"
+  >
+    <ng-template pTemplate="footer">
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Edit"
+        class="p-button-outlined p-button-secondary"
+        (click)="openCreateOrEditEnvPanel($event)"
+      ></button>
+      <button
+        pButton
+        pRipple
+        type="button"
+        label="Configure"
+        class="p-button-outlined p-button-help"
+      ></button>
+    </ng-template>
+  </p-card>
+</div>
+
+<div class="p-slider">
+  <p-sidebar
+    [(visible)]="displayEnv"
+    position="right"
+    [dismissible]="false"
+    appendTo="body"
+    [showCloseIcon]="false"
+    styleClass="p-sidebar-lg"
+    [style]="{ width: '50%',padding: 0 }"
+  >
+    <app-environment-create [envData]="selectedEnv" (afterSave)="onAfterSave($event)" (close)="onCloseEnvPanel($event)"></app-environment-create>
+  </p-sidebar>
+</div>

@@ -1,0 +1,22 @@
+* {
+    margin: 0px
+}
+
+::ng-deep .p-toolbar, .p-toolbar-group-left, .p-toolbar-group-right {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    // background-color: aliceblue;
+}
+
+.main-container {
+    margin-left: 20px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-row-end: auto;
+}
+
+.p-button-outlined {
+    margin-right: 10px !important;
+}

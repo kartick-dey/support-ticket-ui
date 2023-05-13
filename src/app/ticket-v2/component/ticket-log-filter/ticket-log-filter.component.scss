@@ -1,0 +1,56 @@
+.main {
+  &_hdr {
+    height: 45px;
+    display: grid;
+    grid-template-columns: 70% 30%;
+    background-color: white;
+    padding: 5px;
+    padding-right: 10px;
+    // border-top-right-radius: 5px;
+    // border-top-left-radius: 5px;
+    &_lhs {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      font-weight: 500;
+      font-size: small;
+    }
+    &_rhs {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+  }
+  &_bdy {
+    height: calc(100vh - 160px);
+    background-color: whitesmoke;
+    padding: 5px;
+    &_prps {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      font-size: small;
+      &_lbl {
+        font-size: smaller;
+        font-weight: 500;
+      }
+      &_fld {
+        width: 100%;
+        padding-top: 5px;
+      }
+      &_cond {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        &_lbl {
+          font-size: smaller;
+          font-weight: 500;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
+
+::ng-deep .p-calendar {
+  width: 100% !important;
+}

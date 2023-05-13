@@ -1,0 +1,151 @@
+<p-toolbar>
+  <div class="p-toolbar-group-left">
+    <span class="header">All Tickets</span>
+  </div>
+</p-toolbar>
+
+<div class="main-container">
+  <ng-container *ngFor="let ticket of ticketList">
+    <div
+      class="card"
+      (mouseenter)="ticket.hover = true"
+      (mouseleave)="ticket.hover = false"
+    >
+      <div class="p-grid">
+        <div class="p-col-1 display-content">
+          <p-checkbox
+            *ngIf="ticket.hover || ticket.checked"
+            [(ngModel)]="ticket.checked"
+            [binary]="true"
+            inputId="binary"
+            class="icon-margin"
+          ></p-checkbox>
+          <span
+            *ngIf="
+              !ticket.hover && !ticket.checked && ticket.status === 'Closed'
+            "
+            class="material-symbols-outlined icon-margin"
+            style="color: green; text-align: center"
+          >
+            mark_email_read
+          </span>
+          <span
+            *ngIf="!ticket.hover && !ticket.checked && ticket.draft === true"
+            class="material-symbols-outlined icon-margin"
+            style="color: red"
+          >
+            mark_email_unread
+          </span>
+          <span
+            *ngIf="!ticket.hover && !ticket.checked && ticket.replyed === true"
+            class="material-symbols-outlined icon-margin"
+            style="color: yellow"
+          >
+            forward_to_inbox
+          </span>
+          <i
+            style="margin: 10px"
+            class="pi pi-window-maximize icon-margin"
+            (click)="navigateToViewPage(ticket)"
+          ></i>
+        </div>
+        <div class="p-col-6">
+          <div class="tkt-subj-sec">
+            <span (click)="navigateToViewPage(ticket)">{{
+              ticket.subject.length > 80
+                ? (ticket.subject | slice : 0 : 80) + "..."
+                : ticket.subject
+            }}</span>
+          </div>
+          <div class="tkt-count-cntct-time-sec">
+            <div class="tkt-count-sec">
+              <span class="material-symbols-outlined" style="font-size: small">
+                tag
+              </span>
+              <span>{{ ticket.ticketNumber }}</span>
+            </div>
+            <div class="tkt-cntct-name-sec">
+              <span class="material-symbols-outlined tkt-cntct-name-icon">
+                person
+              </span>
+              <span class="tkt-cntct-name">{{ ticket.contactName }}</span>
+            </div>
+            <div class="tkt-cntct-time-sec">
+              <span class="material-symbols-outlined tkt-cntct-name-icon">
+                today
+              </span>
+              <span class="tkt-cntct-time-lbl">{{
+                getTimeWithoutDayAndDurations(ticket.createdAt)
+              }}</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-col-3 display-content">
+          <p-dropdown
+            *ngIf="ticket"
+            [options]="statusList"
+            [(ngModel)]="ticket.status"
+            placeholder="Select Status"
+            optionLabel="name"
+            optionValue="value"
+            appendTo="body"
+          ></p-dropdown>
+        </div>
+        <div class="p-col-2 tkt-crd-thrd-ownr">
+          <div class="tkt-crd-thrd-cnt-sec">
+            <span class="tkt-crd-thrd-cnt-lbl">Thread Count:</span>
+            <span class="tkt-crd-thrd-cnt-val">{{ ticket.threadCount }}</span>
+          </div>
+          <div class="tkt-crd-thrd-cnt-sec">
+            <span class="tkt-crd-thrd-cnt-lbl">Ticket Owner:</span>
+            <span class="tkt-crd-thrd-cnt-val">{{ ticket.ticketOwner }}</span>
+          </div>
+        </div>
+        <!-- <div class="p-col-2 display-content">
+          <div
+            class="tkt-crd-rply-sec"
+            (click)="onClickReplyForward(ticket, 'Reply')"
+          >
+            <span class="material-symbols-outlined" pTooltip="Reply">
+              reply
+            </span>
+            <span>Reply</span>
+          </div>
+          <div
+            class="tkt-crd-rply-sec"
+            (click)="onClickReplyForward(ticket, 'Forward')"
+          >
+            <span>Forward</span>
+            <span class="material-symbols-outlined" pTooltip="Forward">
+              forward
+            </span>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<div class="reply-forward-container" *ngIf="openReplyPanel">
+  <p-sidebar
+    [(visible)]="openReplyPanel"
+    position="right"
+    [dismissible]="false"
+    appendTo="body"
+    [showCloseIcon]="false"
+    styleClass="p-sidebar-lg"
+    [style]="{ width: '50%', padding: 0 }"
+  >
+    <app-reply-forward-ticket
+      *ngIf="openReplyPanel && selectedTicket"
+      [ticket]="selectedTicket"
+      [type]="replyType"
+      (close)="onClose()"
+      (afterSaveAsDraft)="onAfterSaveAsDraft()"
+      (afterReplyForward)="onAfterReplyForward()"
+    ></app-reply-forward-ticket>
+  </p-sidebar>
+</div>
+<p-toast position="top-right"></p-toast>
+
+<app-loader [active]="isLoading"></app-loader>

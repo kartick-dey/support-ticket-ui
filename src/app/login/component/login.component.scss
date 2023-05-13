@@ -1,0 +1,77 @@
+.main-container {
+  height: calc(100vh -0px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-container {
+  background-color: white;
+  border-radius: 5px;
+  margin: 100px;
+  width: 30vw;
+  height: 45vh;
+  padding-top: 20px;
+}
+
+.login-welcome-lbl-sec {
+  background-color: white;
+  padding: 10px;
+  position: absolute;
+  top: 50px;
+  left: calc(100vw - 62.5vw);
+  border-radius: 5px;
+  color: #034174;
+  -webkit-box-shadow: 0px 0px 8px 1px #1087e9;
+  -moz-box-shadow: 0px 0px 8px 1px #1087e9;
+  box-shadow: 0px 0px 8px 1px #1087e9;
+}
+
+.login-welcome-lbl-sec,
+.login-lbl-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.login-welcome-lbl-sec span {
+  font-size: x-large;
+  font-weight: 500;
+}
+
+.login-lbl-sec span {
+  font-size: large;
+  font-weight: bold;
+}
+
+.input-field-sec,
+.login-btn-sec {
+  padding: 5px 52px 5px 52px;
+}
+
+.return-to-sec {
+  padding: 5px 10px 20px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+}
+
+.return-to-lbl {
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.return-to-lbl:hover {
+  color: #2196f3;
+}
+
+.message-sec {
+  padding: 5px 10px 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: smaller;
+  color: rgb(1, 141, 1);
+}

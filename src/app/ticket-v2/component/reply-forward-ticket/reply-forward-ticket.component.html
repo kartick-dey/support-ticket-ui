@@ -1,0 +1,147 @@
+<div class="main-container">
+  <div class="header">
+    <p-toolbar>
+      <div class="p-toolbar-group-left">
+        <span class="header">{{ type }}</span>
+      </div>
+
+      <div class="p-toolbar-group-right">
+        <div class="btn">
+          <p-button
+            label="Send"
+            icon="pi pi-send"
+            styleClass="p-button-sm p-button-primary"
+            (click)="onSendReply()"
+          ></p-button>
+        </div>
+        <div class="btn">
+          <p-button
+            label="Save As Draft"
+            icon="pi pi-save"
+            styleClass="p-button-sm p-button-secondary"
+            (click)="onSaveAsDraft()"
+          ></p-button>
+        </div>
+        <div class="btn">
+          <p-button
+            label="Cancel"
+            icon="pi pi-times-circle"
+            styleClass="p-button-sm p-button-secondary"
+            (click)="onCancel()"
+          ></p-button>
+        </div>
+      </div>
+    </p-toolbar>
+  </div>
+  <div class="address-section">
+    <div class="address-field-sec">
+      <div class="address-field-lbl"><span>From</span></div>
+      <div>
+        <p-chips
+          [disabled]="true"
+          [(ngModel)]="fromAddress"
+          separator=","
+        ></p-chips>
+      </div>
+    </div>
+    <div class="address-field-sec">
+      <div class="address-field-lbl">To</div>
+      <div>
+        <p-chips
+          [disabled]="type === 'Reply'"
+          [(ngModel)]="toAddress"
+          separator=","
+        ></p-chips>
+      </div>
+    </div>
+    <div class="address-field-sec">
+      <div class="address-field-lbl">Cc</div>
+      <div>
+        <p-chips [(ngModel)]="ccAddress" separator=","></p-chips>
+      </div>
+    </div>
+    <div class="address-field-sec">
+      <div class="address-field-lbl">Bcc</div>
+      <div>
+        <p-chips [(ngModel)]="bccAddress" separator=","></p-chips>
+      </div>
+    </div>
+  </div>
+  <div class="attachment-section">
+    <span
+      (click)="openAttachmentDialog()"
+      class="material-symbols-outlined attchement-icon"
+      pBadge
+      [value]="uploadedFiles.length"
+    >
+      attachment
+    </span>
+  </div>
+  <div class="body-editor-sec">
+    <p-editor
+      [(ngModel)]="body"
+      id="editor"
+      [style]="{ height: 'calc(100vh - 300px)' }"
+    ></p-editor>
+  </div>
+</div>
+
+<div class="attachment-dialog">
+  <p-dialog
+    header="Attached Documents"
+    [(visible)]="openAttachDlg"
+    position="right"
+    [style]="{ width: '50vw' }"
+    [draggable]="true"
+    [resizable]="true"
+  >
+    <!-- body -->
+    <div class="doc-conatiner"></div>
+    <div>
+      <p-fileUpload
+        #fileUpload
+        name="uploadFields"
+        multiple="multiple"
+        accept="image/*,.xlsx,.pdf,.xls,.xlsm"
+        maxFileSize="3000000"
+        [showUploadButton]="false"
+      >
+        <ng-template pTemplate="toolbar">
+          <button
+            pButton
+            pRipple
+            icon="pi pi-cloud-upload"
+            type="button"
+            label="Upload"
+            class="p-button-info btn save-btn"
+            *ngIf="fileUpload.files.length > 0"
+            (click)="uploadFile(fileUpload.files)"
+          ></button>
+        </ng-template>
+        <ng-template pTemplate="content">
+          <ul *ngIf="uploadedFiles.length">
+            <li
+              *ngFor="let file of uploadedFiles"
+              (click)="downloadFile(file)"
+              style="font-weight: bold; cursor: pointer"
+            >
+              {{ file.name }}
+            </li>
+          </ul>
+        </ng-template>
+      </p-fileUpload>
+    </div>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-times"
+        (click)="onClosedAttachDlg()"
+        label="Cancel"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<!-- <p-toast position="top-right"></p-toast> -->
+
+<app-loader [active]="isLoading"></app-loader>

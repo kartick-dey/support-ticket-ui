@@ -1,0 +1,17 @@
+.conatiner {
+    display: flex;
+    height: 100vh;
+  }
+  .nav-bar {
+    //   width: calc(100vw - 30px);
+    background: #c8d8f1;
+    height: 47px;
+    padding: 5px;
+  }
+  
+  .main-container {
+    width: calc(100vw);
+    background-color: #eee;
+    height: calc(100vh - 0px);
+  }
+  

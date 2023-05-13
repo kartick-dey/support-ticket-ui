@@ -1,0 +1,241 @@
+<div class="main">
+  <!-- header container -->
+  <div class="main_hdr">
+    <div class="main_hdr_lhs">
+      <div>
+        <span class="material-symbols-outlined"> data_check </span>
+      </div>
+      <div class="main_hdr_lhs_lbl">
+        <span>All Tickets</span>
+      </div>
+    </div>
+    <div class="main_hdr_mddle">
+      <div class="main_hdr_mddle_srch">
+        <p-autoComplete
+          *ngIf="displaySearch"
+          [(ngModel)]="searchText"
+          [suggestions]="searchFlterTkts"
+          (completeMethod)="searchTickets($event)"
+          field="subjWithTktNum"
+          placeholder="Search in Tickets"
+        >
+          <ng-template let-tkt pTemplate="item">
+            <span (click)="onClickSearchItem(tkt)">{{
+              tkt.subjWithTktNum
+            }}</span>
+          </ng-template>
+        </p-autoComplete>
+      </div>
+    </div>
+    <div class="main_hdr_rhs">
+      <div class="main_hdr_rhs_icon">
+        <i
+          *ngIf="!displaySearch"
+          class="pi pi-search"
+          (click)="displaySearch = true"
+        ></i>
+      </div>
+      <!-- <div>
+        <p-button
+          label="New"
+          icon="pi pi-plus"
+          styleClass="p-button-sm p-button-secondary"
+          (click)="openNewTicketForm($event)"
+        ></p-button>
+      </div> -->
+    </div>
+  </div>
+  <!-- body container -->
+  <div class="main_bdy">
+    <!-- sorting, pagination and export container -->
+    <div class="main_bdy_esp">
+      <div class="main_bdy_esp_lhs">
+        <div class="main_bdy_esp_lhs_lbl">
+          <span>Sort by:</span>
+        </div>
+        <div class="main_bdy_esp_lhs_val">
+          <!-- <span>Date Created</span> -->
+          <p-dropdown
+            [options]="sortByList"
+            class="p-drpdwn-sort-by"
+            [(ngModel)]="sortBy"
+            optionLabel="name"
+            [style]="{ border: '1px dashed #dbd7d7' }"
+          ></p-dropdown>
+        </div>
+      </div>
+      <div class="main_bdy_esp_rhs">
+        <div>
+          <p-button
+            label="Export"
+            icon="pi pi-download"
+            styleClass="p-button-sm p-button-primary"
+            (click)="onExport()"
+          ></p-button>
+        </div>
+      </div>
+    </div>
+    <!-- all tickets container and filter container -->
+    <div class="main_bdy_cntnt">
+      <!-- all ticket list container (need to add scrollbar) -->
+      <div class="main_bdy_cntnt_tkt">
+        <p-scrollPanel
+          [style]="{ width: '100%', height: 'calc(100vh - 105px)' }"
+        >
+          <ng-container *ngFor="let ticket of ticketList">
+            <div
+              class="main_bdy_cntnt_tkt_crd"
+              (mouseenter)="ticket.hover = true"
+              (mouseleave)="ticket.hover = false"
+            >
+              <div class="p-grid">
+                <div
+                  class="p-col-1 main_bdy_cntnt_tkt_crd_col"
+                  style="padding-left: 30px"
+                >
+                  <p-checkbox
+                    *ngIf="ticket.hover || ticket.checked"
+                    [(ngModel)]="ticket.checked"
+                    [binary]="true"
+                    inputId="binary"
+                    class="icon-margin"
+                  ></p-checkbox>
+                  <span
+                    *ngIf="!ticket.hover && !ticket.checked"
+                    class="material-symbols-outlined icon-margin"
+                  >
+                    mark_email_read
+                  </span>
+                  <i
+                    style="margin: 10px"
+                    class="pi pi-window-maximize icon-margin"
+                    (click)="navigateToViewPage(ticket)"
+                  ></i>
+                </div>
+                <div
+                  class="p-col-6 main_bdy_cntnt_tkt_crd_mddle"
+                  style="padding-left: 30px"
+                >
+                  <div
+                    class="main_bdy_cntnt_tkt_crd_mddle_subj"
+                    [pTooltip]="ticket.subject"
+                    tooltipPosition="top"
+                  >
+                    <span (click)="navigateToViewPage(ticket)">{{
+                      ticket.subject.length > 60
+                        ? (ticket.subject | slice : 0 : 60) + "..."
+                        : ticket.subject
+                    }}</span>
+                  </div>
+                  <div class="main_bdy_cntnt_tkt_crd_mddle_cct">
+                    <div class="main_bdy_cntnt_tkt_crd_mddle_cct_cnt">
+                      <span
+                        class="material-symbols-outlined"
+                        style="font-size: small"
+                      >
+                        tag
+                      </span>
+                      <span>{{ ticket.ticketNumber }}</span>
+                    </div>
+                    <div class="main_bdy_cntnt_tkt_crd_mddle_cct_cntct">
+                      <span
+                        class="material-symbols-outlined main_bdy_cntnt_tkt_crd_mddle_cct_cntct_icon"
+                      >
+                        person
+                      </span>
+                      <span
+                        [pTooltip]="ticket.contactName"
+                        class="main_bdy_cntnt_tkt_crd_mddle_cct_cntct_name"
+                        >{{
+                          ticket.contactName.length > 20
+                            ? (ticket.contactName | slice : 0 : 20) + "..."
+                            : ticket.contactName
+                        }}</span
+                      >
+                    </div>
+                    <div class="main_bdy_cntnt_tkt_crd_mddle_cct_tm">
+                      <span
+                        class="material-symbols-outlined main_bdy_cntnt_tkt_crd_mddle_cct_tm_icon"
+                      >
+                        today
+                      </span>
+                      <span class="main_bdy_cntnt_tkt_crd_mddle_cct_tm_lbl">{{
+                        getTimeWithoutDayAndDurations(ticket.createdAt)
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-col-3 main_bdy_cntnt_tkt_crd_col_status">
+                  <div class="main_bdy_cntnt_tkt_crd_col_status_lbl">
+                    <span>Status: </span>
+                  </div>
+                  <div class="main_bdy_cntnt_tkt_crd_col_status_dpdwn">
+                    <p-dropdown
+                      *ngIf="ticket"
+                      [options]="statusList"
+                      [(ngModel)]="ticket.status"
+                      placeholder="Select Status"
+                      optionLabel="name"
+                      optionValue="value"
+                      appendTo="body"
+                      (onChange)="onChangeStatus(ticket)"
+                      [style]="{ border: 'none' }"
+                    ></p-dropdown>
+                  </div>
+                </div>
+                <div class="p-col-2 main_bdy_cntnt_tkt_crd_rhs">
+                  <div class="main_bdy_cntnt_tkt_crd_rhs_col">
+                    <span class="main_bdy_cntnt_tkt_crd_rhs_col_lbl"
+                      >Thread Count:</span
+                    >
+                    <span class="main_bdy_cntnt_tkt_crd_rhs_col_val">{{
+                      ticket.threadCount
+                    }}</span>
+                  </div>
+                  <div class="main_bdy_cntnt_tkt_crd_rhs_col">
+                    <div class="main_bdy_cntnt_tkt_crd_rhs_col_lbl">
+                      <span>Priority:</span>
+                    </div>
+                    <div class="main_bdy_cntnt_tkt_crd_rhs_col_val">
+                      <p-dropdown
+                        *ngIf="ticket"
+                        [options]="priorityList"
+                        [(ngModel)]="ticket.priority"
+                        placeholder="--None--"
+                        optionLabel="name"
+                        optionValue="value"
+                        appendTo="body"
+                        (onChange)="onChangePriority(ticket)"
+                        [style]="{ border: 'none' }"
+                      ></p-dropdown>
+                    </div>
+                    <!-- <span class="main_bdy_cntnt_tkt_crd_rhs_col_val">{{
+                      ticket.priority
+                    }}</span> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </p-scrollPanel>
+      </div>
+      <!-- filter information container (need to add scrollbar)-->
+      <div class="main_bdy_cntnt_fltr">
+        <ticket-log-filter
+          (applyFilter)="onApplyFilters($event)"
+        ></ticket-log-filter>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="main_paginator">
+  <p-paginator
+    [first]="first"
+    [rows]="rows"
+    [totalRecords]="totalRecords"
+    (onPageChange)="onPageChange($event)"
+    [showJumpToPageDropdown]="true"
+    [showPageLinks]="false"
+  ></p-paginator>
+</div> -->

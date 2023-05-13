@@ -1,0 +1,67 @@
+<div class="main-container">
+  <div class="login-container">
+    <div class="login-welcome-lbl-sec">
+      <span>Welcome to Support Service</span>
+    </div>
+    <div class="login-lbl-sec">
+      <span>{{
+        displayLogin ? "Sign In" : "Enter email to reset password"
+      }}</span>
+    </div>
+    <div *ngIf="message && displayLogin" class="message-sec">{{ message }}</div>
+    <div class="input-field-sec">
+      <input
+        required="true"
+        type="text"
+        class="p-inputtext-sm"
+        placeholder="Enter Email"
+        [(ngModel)]="email"
+        pInputText
+      />
+    </div>
+    <div class="input-field-sec">
+      <input
+        *ngIf="displayLogin"
+        type="password"
+        required="true"
+        class="p-inputtext-sm"
+        placeholder="Password"
+        pInputText
+        [(ngModel)]="password"
+      />
+    </div>
+    <div class="login-btn-sec">
+      <p-button
+        *ngIf="displayLogin"
+        label="Login"
+        styleClass="p-button-sm"
+        [loading]="isLoading"
+        (onClick)="onClickLogin()"
+        [disabled]="disabledBtn()"
+      ></p-button>
+      <p-button
+        *ngIf="!displayLogin"
+        label="Send reset link"
+        styleClass="p-button-sm"
+        [loading]="isLoading"
+        [disabled]="disabledBtn()"
+        (onClick)="onClickResetPwdLink($event)"
+      ></p-button>
+    </div>
+    <div class="return-to-sec">
+      <span
+        *ngIf="displayLogin"
+        class="return-to-lbl"
+        (click)="onClickForgetPwd()"
+        >Forget Password?</span
+      >
+      <span *ngIf="!displayLogin">
+        Return to
+        <span class="return-to-lbl" (click)="onClickSignIn()">Sign In</span>
+      </span>
+    </div>
+  </div>
+</div>
+<p-confirmPopup></p-confirmPopup>
+
+<p-toast position="top-right"></p-toast>

@@ -1,0 +1,116 @@
+<div class="main_hdr">
+  <div class="main_hdr_lhs">
+    <i class="pi pi-filter"></i>
+    <span>FILTERS</span>
+  </div>
+  <div class="main_hdr_rhs">
+    <p-button
+      label="Apply"
+      styleClass="p-button-sm p-button-primary"
+      (click)="onApplyFilters()"
+    ></p-button>
+  </div>
+</div>
+<div class="main_bdy">
+  <div class="main_bdy_prp">
+    <div class="main_bdy_prps_cond">
+      <span class="main_bdy_prps_cond_lbl">Condition: </span>
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        [options]="conditionalOp"
+        [(ngModel)]="filter.condition"
+        placeholder="--None--"
+        optionLabel="name"
+        optionValue="value"
+        appendTo="body"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="main_bdy_prps">
+    <div class="main_bdy_prps_lbl">
+      <span>Status</span>
+    </div>
+    <div class="main_bdy_prps_fld">
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        [options]="statusList"
+        [(ngModel)]="filter.status"
+        placeholder="--None--"
+        optionLabel="name"
+        optionValue="value"
+        appendTo="body"
+        [showClear]="true"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="main_bdy_prps">
+    <div class="main_bdy_prps_lbl">
+      <span>Priority</span>
+    </div>
+    <div class="main_bdy_prps_fld">
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        [options]="priorityList"
+        [(ngModel)]="filter.priority"
+        placeholder="--None--"
+        optionLabel="name"
+        optionValue="value"
+        appendTo="body"
+        [showClear]="true"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="main_bdy_prps">
+    <div class="main_bdy_prps_lbl">
+      <span>Contact Name</span>
+    </div>
+    <div class="main_bdy_prps_fld">
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        [options]="contactNameList"
+        [(ngModel)]="filter.contactName"
+        placeholder="--None--"
+        optionLabel="name"
+        optionValue="value"
+        appendTo="body"
+        [showClear]="true"
+      ></p-dropdown>
+    </div>
+  </div>
+  <div class="main_bdy_prps">
+    <div class="main_bdy_prps_lbl">
+      <span>Due Date</span>
+    </div>
+    <div class="main_bdy_prps_fld">
+      <p-calendar
+        [(ngModel)]="filter.dueDate"
+        [showIcon]="true"
+        inputId="icon"
+        panelStyleClass="calendar"
+        appendTo="body"
+        [baseZIndex]="2000"
+        [monthNavigator]="true"
+        [yearNavigator]="true"
+        yearRange="2000:2030"
+        [showOtherMonths]="false"
+      ></p-calendar>
+    </div>
+  </div>
+  <div class="main_bdy_prps">
+    <div class="main_bdy_prps_lbl">
+      <span>Category</span>
+    </div>
+    <div class="main_bdy_prps_fld">
+      <p-dropdown
+        [style]="{ width: '100%' }"
+        [options]="catList"
+        [(ngModel)]="filter.category"
+        placeholder="--None--"
+        optionLabel="name"
+        optionValue="value"
+        appendTo="body"
+        [showClear]="true"
+      ></p-dropdown>
+    </div>
+  </div>
+</div>

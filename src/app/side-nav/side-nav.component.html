@@ -1,0 +1,76 @@
+<div class="sidebar-nav" [ngStyle]="{ width: isExpand ? '60px' : '50px' }">
+  <div class="nav-title">
+    <h3 *ngIf="isExpand" (click)="isExpand = !isExpand">LOGO</h3>
+    <i
+      *ngIf="!isExpand"
+      class="pi pi-list"
+      style="font-size: 1.5rem"
+      (click)="isExpand = !isExpand"
+    ></i>
+  </div>
+
+  <div class="nav-list">
+    <div
+      class="nav-item"
+      (click)="navigate('Tickets')"
+      [ngClass]="
+        selectedMenu === 'Tickets' ? 'selected-menu' : 'unselected-menu'
+      "
+    >
+      <div class="icon-sec">
+        <!-- pi-ticket -->
+        <i class="pi pi-ticket" style="font-size: 1.3rem"></i>
+        <!-- <span class="material-symbols-outlined icon"> lab_profile </span> -->
+      </div>
+      <div class="label" *ngIf="isExpand">
+        <span>Tickets</span>
+      </div>
+    </div>
+
+    <div
+      class="nav-item"
+      (click)="navigate('Users')"
+      [ngClass]="selectedMenu === 'Users' ? 'selected-menu' : 'unselected-menu'"
+    >
+      <div class="icon-sec">
+        <span class="material-symbols-outlined icon"> diversity_3 </span>
+      </div>
+      <div class="label" *ngIf="isExpand">
+        <span>Users</span>
+      </div>
+    </div>
+    <div class="nav-item" (click)="menu.toggle($event)">
+      <div class="icon-sec">
+        <span class="material-symbols-outlined icon" style="font-size: 2rem">
+          person
+        </span>
+      </div>
+      <div class="label" *ngIf="isExpand">
+        <span>Account</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="user-icon" [ngStyle]="{ left: isExpand ? '30px' : '10px' }">
+    <p-avatar
+      icon="pi pi-user"
+      [ngStyle]="{ 'font-size': isExpand ? '2rem' : '1rem' }"
+      (click)="menu.toggle($event)"
+    ></p-avatar>
+  </div> -->
+</div>
+
+<p-menu #menu [popup]="true" [model]="menuItems"></p-menu>
+
+<p-toast position="top-right"></p-toast>
+
+<p-dialog
+  header="Change Password"
+  position="top"
+  [(visible)]="displayChngPwdPanel"
+>
+  <app-change-password
+    *ngIf="displayChngPwdPanel"
+    (close)="onCloseChngPwdPanel()"
+  ></app-change-password>
+</p-dialog>

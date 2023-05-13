@@ -1,0 +1,60 @@
+<div class="header-sec">
+  <p-toolbar>
+    <div class="p-toolbar-group-left">
+      <span class="header">Add Envrioment Details</span>
+    </div>
+
+    <div class="p-toolbar-group-right">
+      <p-button label="Save" (click)="onSave()"></p-button>
+      <p-button label="Cancel" (click)="onCancel()"></p-button>
+    </div>
+  </p-toolbar>
+</div>
+<form [formGroup]="envForm">
+  <div class="p-grid p-fluid form-container">
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Environment name"
+          formControlName="name"
+        />
+      </div>
+    </div>
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-globe"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Environment URL"
+          formControlName="url"
+        />
+      </div>
+    </div>
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Email"
+          formControlName="email"
+        />
+      </div>
+    </div>
+    <div class="p-col-12 p-md-4">
+      <div class="p-inputgroup">
+        <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
+        <input
+          type="text"
+          pInputText
+          placeholder="Phone"
+          formControlName="phone"
+        />
+      </div>
+    </div>
+  </div>
+</form>

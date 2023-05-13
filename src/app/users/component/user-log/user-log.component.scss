@@ -1,0 +1,151 @@
+::ng-deep .p-toolbar,
+.p-toolbar-group-left,
+.p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.main {
+  background-color: #eee;
+  width: 100%;
+  &_hdr {
+    height: 55px;
+    width: 100%;
+    display: grid;
+    background-color: white;
+    grid-template-columns: 50% 50%;
+    &_lhs {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 10px;
+      &_lbl {
+        font-weight: 600;
+        font-style: italic;
+        margin-left: 5px;
+      }
+    }
+    &_rhs {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 10px;
+      div {
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.usr-card {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 10px 10px 10px;
+}
+
+.sl-no-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sl-no-sec-lbl {
+  display: flex;
+  background-color: #eee;
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-sec {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.email-sec {
+  font-size: small;
+  font-style: italic;
+}
+
+.statu-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    padding: 0px 14px 5px 14px;
+    background-color: rgb(0, 143, 59);
+    color: white;
+    border-radius: 20px;
+  }
+}
+
+.role-drpdwn-sec {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 40px;
+}
+
+.role-drpdwn-sec-lbl {
+  font-size: small;
+  font-weight: 500;
+}
+
+.role-drpdwn {
+  margin-top: 3px;
+  margin-left: 10px;
+}
+
+.rst-pwd-sec {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  span {
+    padding: 2px 16px 3px 16px;
+    background-color: #eee;
+    border-radius: 20px;
+    font-weight: 500;
+    font-size: small;
+    cursor: pointer;
+  }
+
+  i {
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .dlt-icon {
+    color: rgb(184, 18, 18);
+  }
+}
+
+.dlt-usr-icon-sec {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  i {
+    font-size: 1.3rem;
+    cursor: pointer;
+  }
+
+  .dlt-icon {
+    color: rgb(184, 18, 18);
+  }
+}
+
+.cred-info {
+  font-weight: 600;
+  font-style: italic;
+}

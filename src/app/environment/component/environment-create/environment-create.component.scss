@@ -1,0 +1,16 @@
+::ng-deep .p-toolbar, .p-toolbar-group-left, .p-toolbar-group-right {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    // background-color: aliceblue;
+}
+
+.form-container {
+    background-color: #eee;
+    margin: 20px;
+    display: grid;
+    grid-template-columns: auto auto;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}

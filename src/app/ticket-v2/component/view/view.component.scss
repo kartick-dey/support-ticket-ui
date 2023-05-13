@@ -1,0 +1,301 @@
+// ::ng-deep .p-toolbar,
+// .p-toolbar-group-left,
+// .p-toolbar-group-right {
+//   display: flex;
+//   align-items: center;
+//   padding: 10px;
+//   // background-color: aliceblue;
+// }
+
+.main {
+  width: 100%;
+  overflow: hidden;
+  &_hdr {
+    height: 55px;
+    width: 100%;
+    display: grid;
+    background-color: white;
+    grid-template-columns: 30% 40% 30%;
+    &_lhs {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 10px;
+      &_lbl {
+        font-weight: 600;
+        font-style: italic;
+        margin-left: 5px;
+      }
+    }
+    &_mddle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      &_srch {
+        width: 80%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &_icon {
+          cursor: pointer;
+        }
+      }
+    }
+    &_rhs {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding-right: 10px;
+      div {
+        margin-left: 10px;
+      }
+    }
+  }
+  &_bdy {
+    padding: 5px;
+    background-color: #eee;
+    &_grd {
+      padding: 10px;
+    }
+  }
+}
+
+.email-threads-container {
+  background-color: white;
+  height: calc(100vh - 77px);
+  justify-content: center;
+  align-items: center;
+  // overflow: scroll;
+}
+
+.ticket-list-container {
+  height: calc(100vh - 77px);
+  justify-content: center;
+  align-items: center;
+  overflow: scroll;
+  background-color: white;
+}
+
+.ticket-props-container {
+  background-color: white;
+  height: calc(100vh - 77px);
+  // overflow: scroll;
+}
+
+.tkt-header-sec {
+  height: 100px;
+  background-color: white;
+  // padding: 10px;
+  border-radius: 5px;
+  // border: 2px solid #eee;
+}
+
+.tkt-title-status-sec {
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+
+.tkt-title-sec {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.tkt-title-icon {
+  margin: 5px;
+}
+
+.tkt-title-lbl {
+  padding-top: 0px;
+  font-size: medium;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span {
+    margin-left: 10px;
+  }
+}
+
+.tht-right-sec {
+  display: grid;
+  grid-template-rows: auto auto;
+  // gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.tkt-edit-btn-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // padding-left: 20px;
+  span {
+    font-size: medium;
+    padding-bottom: 0px;
+  }
+  icon {
+    font-size: medium;
+    padding-top: 0px;
+  }
+}
+
+.tkt-reply-btn-sec {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 2px;
+}
+
+.tkt-num {
+  // height: 50%;
+  padding: 5px 10px 5px 10px;
+  background-color: #eee;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.tkt-time-status-sec {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.tkt-status-sec {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.tkt-time-sec {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 5px;
+  font-size: small;
+}
+
+.tkt-eml-drft-state {
+  font-weight: 500;
+  color: brown;
+  margin-left: 10px;
+}
+
+.tkt-time-lbl {
+  margin-top: -2px;
+  margin-left: 3px;
+}
+
+// ticket email list conatiner
+
+.tkt-eml-list-sec {
+  height: calc(100vh - 200px);
+  // overflow: scroll;
+}
+
+.tkt-eml-card {
+  background-color: #eee;
+  margin: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc9c9;
+  width: calc(100vw - 31vw);
+}
+
+.tkt-eml-crd-header-sec {
+  display: grid;
+  grid-template-columns: 80% 20%;
+}
+
+.tkt-eml-crd-header-sec-left {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.tkt-eml-crd-header-sec-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  margin-top: 5px;
+  // background-color: burlywood;
+}
+
+.tkt-eml-crd-header-usr {
+  margin: 0px 5px 0px 10px;
+  font-size: medium;
+  font-weight: 500;
+}
+
+.tkt-eml-crd-header-time {
+  margin-left: 5px;
+  font-size: small;
+  font-style: italic;
+}
+
+.tkt-eml-crd-body-sec {
+  padding: 0px 5px 5px 45px;
+  font-size: small;
+  cursor: pointer;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.tkt-eml-contnt-only {
+  word-wrap: break-word;
+}
+
+.tkt-eml-full-contnt {
+  padding: 5px 20px 10px 20px;
+}
+
+.tkt-eml-full-contnt-sec {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 10px;
+}
+
+.tkt-eml-doc-lbl {
+  font-size: medium;
+  font-weight: 600;
+}
+
+.tkt-eml-doc-sec {
+  display: flex;
+  width: 300px;
+  // background-color: bisque;
+}
+
+.tkt-eml-doc-name {
+  padding: 10px;
+  border: 1px solid #585757;
+}
+
+.tkt-eml-doc-dwld-icon {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid #585757;
+  cursor: pointer;
+}
+
+.tkt-eml-doc-dwld-icon:hover {
+  background-color: beige;
+}
+
+::ng-deep .edit-btn {
+  width: 100% !important;
+  background-color: #eee !important;
+}
+
+::ng-deep .p-scrollpanel-content {
+  padding: 0px !important;
+}
+
+.tkt-eml-drft-send {
+  padding-left: 10px;
+  right: 0px;
+  cursor: pointer;
+}

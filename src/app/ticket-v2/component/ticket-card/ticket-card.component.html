@@ -1,0 +1,50 @@
+<div class="ticket-list-card">
+  <div class="card-title-sec">
+    <div>
+      <!-- <span class="material-symbols-outlined" style="font-size: medium">
+        emoji_objects
+      </span> -->
+      <span class="card-title" (click)="onClickTkt()">
+        {{
+          ticket.subject.length > 44
+            ? (ticket.subject | slice : 0 : 44) + "..."
+            : ticket.subject
+        }}
+      </span>
+    </div>
+    <div>
+      <!-- [label]="getAvatarTxt(ticket.ticketOwner | slice : 0 : 2" -->
+      <p-avatar
+        [label]="getAvatarTxt(ticket.ticketOwner)"
+        styleClass="p-mr-2"
+        size="large"
+        shape="circle"
+      ></p-avatar>
+    </div>
+  </div>
+  <div class="card-ticket-num-contact-sec">
+    <div class="card-ticket-num">
+      <span class="material-symbols-outlined" style="font-size: small">
+        tag
+      </span>
+      <span>{{ ticket.ticketNumber }}</span>
+    </div>
+    <div class="card-contact-name">{{ ticket.contactName }}</div>
+  </div>
+  <div class="card-ticket-time-sec">
+    <span class="material-symbols-outlined card-ticket-time-icon">
+      chronic
+    </span>
+    <span>{{ getTimeFromNow(ticket.createdAt) }}</span>
+  </div>
+  <div class="card-ticket-status-thread-sec">
+    <div class="card-ticket-status">
+      <span class="material-symbols-outlined status-icon"> token </span
+      ><span>{{ ticket.status }}</span>
+    </div>
+    <div class="card-ticket-thread-count">
+      <i class="pi pi-envelope thread-icon"></i>
+      <span>{{ ticket.threadCount }}</span>
+    </div>
+  </div>
+</div>

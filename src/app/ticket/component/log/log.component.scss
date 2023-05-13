@@ -1,0 +1,147 @@
+::ng-deep .p-toolbar,
+.p-toolbar-group-left,
+.p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  // background-color: aliceblue;
+}
+
+.display-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.margin-left-right {
+  margin: 0px 5px 0px 5px;
+}
+
+.icon-container {
+  margin: 0px 4px 0px 5px;
+  border: 1px solid #eee;
+  padding: 2px;
+  background-color: coral;
+  border-radius: 5px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.icon-label {
+  top: -2px;
+  position: relative;
+  padding-right: 5px;
+}
+
+.main-container {
+  height: calc(100vh - 50px);
+  padding: 5px;
+  justify-content: center;
+  align-items: center;
+  overflow-y: scroll;
+  // overflow: scroll;
+}
+
+.card {
+  margin: 10px 0px 0px 0px;
+  padding: 10px 10px 5px 0px;
+  background-color: white;
+  border: 1px solid #eee;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.display-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.tkt-subj-sec {
+  font-size: medium;
+  font-weight: 500;
+}
+
+.tkt-count-cntct-time-sec {
+  font-size: small;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  // background-color: bisque;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.tkt-count-sec {
+  font-size: small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background-color: #d8d7d7;
+  padding: 0px 10px 0px 10px;
+}
+
+.tkt-cntct-name-sec {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+}
+
+.tkt-cntct-name-icon {
+  font-size: small;
+  margin-right: 5px;
+}
+
+.tkt-cntct-name {
+  font-weight: 500;
+  border-bottom: 2px dashed #eee;
+}
+
+.tkt-cntct-time-sec {
+  padding: 0px 10px 0px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tkt-cntct-time-lbl {
+  border-bottom: 2px dashed #eee;
+}
+
+.tkt-crd-thrd-ownr {
+  margin-top: 10px;
+}
+
+.tkt-crd-thrd-cnt-sec {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.tkt-crd-thrd-cnt-lbl{
+  font-weight: 500;
+  font-size: small;
+}
+
+.tkt-crd-thrd-cnt-val{
+  padding-left: 10px;
+  font-size: small;
+}
+
+.tkt-crd-rply-sec {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 10px;
+  padding: 0px 10px 3px 10px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+}

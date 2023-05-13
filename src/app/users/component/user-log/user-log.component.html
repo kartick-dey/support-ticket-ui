@@ -1,0 +1,131 @@
+<div class="main">
+  <!-- header container -->
+  <div class="main_hdr">
+    <div class="main_hdr_lhs">
+      <div>
+        <span class="material-symbols-outlined"> data_check </span>
+      </div>
+      <div class="main_hdr_lhs_lbl">
+        <span>Users List</span>
+      </div>
+    </div>
+    <div class="main_hdr_rhs">
+      <div>
+        <p-button
+          label="Add New User"
+          icon="pi pi-plus"
+          styleClass="p-button-sm p-button-secondary"
+          (click)="addNewUser()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+  <div class="p-grid usr-card" *ngFor="let user of userList">
+    <div class="p-col-1 sl-no-sec">
+      <div class="sl-no-sec-lbl">
+        <span class="material-symbols-outlined" style="font-size: small">
+          tag
+        </span>
+        <span>{{ user.slno }}</span>
+      </div>
+    </div>
+    <div class="p-col-1">
+      <p-avatar
+        [label]="getNameInitials(user)"
+        styleClass="p-mr-2"
+        size="large"
+        shape="circle"
+      ></p-avatar>
+    </div>
+    <div class="p-col-4">
+      <div class="name-sec">{{ user.fullName }}</div>
+      <div class="email-sec">{{ user.email }}</div>
+    </div>
+    <div class="p-col-3 role-drpdwn-sec">
+      <div class="role-drpdwn-sec-lbl"><span>Role: </span></div>
+      <div class="role-drpdwn">
+        <p-dropdown
+          [options]="roleList"
+          placeholder="Select Role"
+          optionLabel="name"
+          optionValue="value"
+          appendTo="body"
+          [(ngModel)]="user.role"
+          (onChange)="onChangeRole(user)"
+          [style]="{ border: '1px dashed #dbd7d7' }"
+        ></p-dropdown>
+      </div>
+    </div>
+    <div class="p-col-1 statu-sec">
+      <!-- <span>{{ user.active ? "Active" : "Inactive" }}</span> -->
+      <p-toggleButton
+        [(ngModel)]="user.active"
+        onLabel="Active"
+        offLabel="Inactive"
+        [style]="{
+          width: '5rem',
+          background: user.active ? 'rgb(0, 143, 59)' : 'rgb(184, 18, 18)',
+          color: 'white',
+          'border-radius': '20px'
+        }"
+        (onChange)="onChangeStatus($event, user)"
+      ></p-toggleButton>
+    </div>
+    <div class="p-col-2 rst-pwd-sec">
+      <div>
+        <span (click)="onResetPassword($event, user)">Reset Password</span>
+      </div>
+      <div>
+        <i
+          class="pi pi-trash dlt-icon"
+          (click)="onClickDeleteUser($event, user)"
+        ></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="openCreateUsrDlg">
+  <p-dialog
+    header="Create New User"
+    position="top"
+    [(visible)]="openCreateUsrDlg"
+  >
+    <app-user-create
+      *ngIf="openCreateUsrDlg"
+      (close)="onCloseUserDlg()"
+    ></app-user-create>
+  </p-dialog>
+</div>
+
+<!-- iohVKbfjW -->
+
+<div *ngIf="displayCredDetails && clickedUser">
+  <p-dialog
+    header="Credentials Details"
+    [(visible)]="displayCredDetails"
+    [modal]="true"
+    [style]="{ width: '50vw' }"
+    [draggable]="true"
+    [resizable]="true"
+  >
+    <p>
+      Email : <span class="cred-info">{{ clickedUser.email }}</span>
+    </p>
+    <p>
+      Password : <span class="cred-info">{{ clickedUser.password }}</span>
+    </p>
+    <ng-template pTemplate="footer">
+      <p-button
+        icon="pi pi-check"
+        (click)="displayCredDetails = false"
+        label="Ok"
+        styleClass="p-button-text"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</div>
+
+<app-loader [active]="isLoading"></app-loader>
+
+<p-confirmPopup></p-confirmPopup>

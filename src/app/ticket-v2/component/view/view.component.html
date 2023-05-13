@@ -1,0 +1,219 @@
+<div class="main">
+  <!-- header container -->
+  <div class="main_hdr">
+    <div class="main_hdr_lhs">
+      <p-button
+        label="Back to Tickets"
+        icon="pi pi-arrow-circle-left"
+        styleClass="p-button-sm p-button-secondary"
+        (click)="goBackToLogPage()"
+      ></p-button>
+    </div>
+    <div class="main_hdr_mddle">
+      <div class="main_hdr_mddle_srch">
+        <!-- <span class="p-input-icon-right">
+          <i class="pi pi-search main_hdr_mddle_srch_icon"></i>
+          <input class="p-inputtext-sm" type="text" pInputText />
+        </span> -->
+      </div>
+    </div>
+    <div class="main_hdr_rhs">
+      <div></div>
+    </div>
+  </div>
+  <div class="main_bdy">
+    <div class="p-grid main_bdy_grd">
+      <div class="p-col-9 email-threads-container">
+        <div class="tkt-header-sec">
+          <div class="tkt-title-status-sec">
+            <div class="tkt-title-sec">
+              <div class="tkt-num">
+                <span class="material-symbols-outlined" style="font-size: small"
+                  >tag
+                </span>
+                <span *ngIf="ticket">{{ ticket.ticketNumber }}</span>
+              </div>
+              <div class="tkt-title-lbl">
+                <span *ngIf="ticket">{{
+                  ticket.subject.length > 100
+                    ? (ticket.subject | slice : 0 : 100) + "..."
+                    : ticket.subject
+                }}</span>
+              </div>
+            </div>
+            <div class="tht-right-sec">
+              <div class="tkt-reply-btn-sec">
+                <div>
+                  <p-button
+                    label="Reply"
+                    icon="pi pi-directions-alt"
+                    styleClass="p-button-sm p-button-primary"
+                    (click)="onClickReplyForward('Reply')"
+                  ></p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="tkt-time-status-sec">
+            <div class="tkt-time-sec">
+              <span class="material-symbols-outlined"> acute </span>
+              <span *ngIf="ticket" class="tkt-time-lbl">{{
+                getFullTimeAndDurations(ticket.createdAt)
+              }}</span>
+            </div>
+            <div class="tkt-status-sec">
+              <p-dropdown
+                [style]="{ width: '100%' }"
+                *ngIf="ticket"
+                [options]="statusList"
+                [(ngModel)]="ticket.status"
+                placeholder="Select Status"
+                optionLabel="name"
+                optionValue="value"
+                appendTo="body"
+                (onChange)="onChangeStatus(ticket)"
+                [style]="{ border: '1px dashed #dbd7d7' }"
+              ></p-dropdown>
+            </div>
+          </div>
+        </div>
+        <!-- ticket thread list with details view once user clicked any ticket  -->
+        <div class="tkt-eml-list-sec">
+          <p-scrollPanel
+            [style]="{
+              width: '100%',
+              height: 'calc(100vh - 193px)'
+            }"
+          >
+            <ng-container *ngFor="let tktEmail of ticketEmailThreads">
+              <div
+                class="tkt-eml-card"
+                [ngStyle]="{
+                  'background-color': tktEmail.expand ? 'white' : '#eee'
+                }"
+              >
+                <div
+                  class="tkt-eml-crd-header-sec"
+                  (click)="tktEmail.expand = !tktEmail.expand"
+                >
+                  <div class="tkt-eml-crd-header-sec-left">
+                    <div>
+                      <p-avatar
+                        icon="pi pi-user"
+                        styleClass="p-mr-2"
+                        [style]="{
+                          'background-color': '#2196F3',
+                          color: '#ffffff',
+                          width: '30px',
+                          height: '30px'
+                        }"
+                        shape="circle"
+                      ></p-avatar>
+                    </div>
+                    <div class="tkt-eml-crd-header-usr">
+                      <span>{{ tktEmail.senderName }}</span>
+                    </div>
+                    <div class="tkt-eml-crd-header-time">
+                      <span>{{
+                        getTimeWithoutDayAndDurations(tktEmail.createdAt)
+                      }}</span>
+                      <span class="tkt-eml-drft-state">{{
+                        tktEmail.draft ? "(Draft)" : ""
+                      }}</span>
+                    </div>
+                  </div>
+                  <div class="tkt-eml-crd-header-sec-right">
+                    <div *ngIf="tktEmail.draft" class="tkt-eml-drft-send">
+                      <i
+                        class="pi pi-send"
+                        (click)="onClickReplyForward('Reply', tktEmail)"
+                      ></i>
+                    </div>
+                  </div>
+                </div>
+                <hr *ngIf="tktEmail.expand" />
+                <div
+                  class="tkt-eml-crd-body-sec"
+                  [ngStyle]="{
+                    'background-color': tktEmail.expand ? 'white' : '#eee'
+                  }"
+                >
+                  <!-- show only email content without formating in 2 two lines -->
+                  <div *ngIf="!tktEmail.expand">
+                    <span
+                      class="tkt-eml-contnt-only"
+                      [innerHtml]="shortContent(tktEmail.text, 180)"
+                    >
+                    </span>
+                  </div>
+                  <div *ngIf="tktEmail.expand" class="tkt-eml-full-contnt-sec">
+                    <div>
+                      <span
+                        class="tkt-eml-full-contnt"
+                        [innerHtml]="senitizeHTML(tktEmail.html)"
+                      ></span>
+                    </div>
+                    <!-- attachments container -->
+                    <div
+                      class="tkt-eml-doc-lbl"
+                      *ngIf="tktEmail?.attachments?.length > 0"
+                    >
+                      <span>Attachments</span>
+                    </div>
+                    <div
+                      class="tkt-eml-doc-sec"
+                      *ngFor="let attachment of tktEmail.attachments"
+                    >
+                      <div class="tkt-eml-doc-name">
+                        <span>{{ attachment.name }}</span>
+                      </div>
+                      <div class="tkt-eml-doc-dwld-icon">
+                        <i
+                          class="pi pi-download"
+                          (click)="downloadTktEmailDoc(attachment)"
+                        ></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </p-scrollPanel>
+        </div>
+      </div>
+      <div class="p-col-3 ticket-props-container" *ngIf="ticket">
+        <app-ticket-property
+          *ngIf="ticket"
+          [ticket]="ticket"
+        ></app-ticket-property>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="reply-forward-container" *ngIf="openReplyPanel">
+  <p-sidebar
+    [(visible)]="openReplyPanel"
+    position="right"
+    [dismissible]="false"
+    appendTo="body"
+    [showCloseIcon]="false"
+    styleClass="p-sidebar-lg"
+    [style]="{ width: '50%', padding: 0 }"
+  >
+    <app-reply-forward-ticket
+      *ngIf="openReplyPanel && ticket"
+      [ticket]="ticket"
+      [type]="replyType"
+      [draftEmailId]="draftEmailId"
+      (close)="onClose()"
+      (afterSaveAsDraft)="onAfterSaveAsDraft()"
+      (afterReplyForward)="onAfterReplyForward()"
+    ></app-reply-forward-ticket>
+  </p-sidebar>
+</div>
+
+<p-toast position="top-right"></p-toast>
+
+<app-loader [active]="isLoading"></app-loader>

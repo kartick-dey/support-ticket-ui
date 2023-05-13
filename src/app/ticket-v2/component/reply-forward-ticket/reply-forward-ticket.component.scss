@@ -1,0 +1,73 @@
+@import "../../../../scss/var.scss";
+
+::ng-deep .p-toolbar,
+.p-toolbar-group-left,
+.p-toolbar-group-right {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  //   background-color: aliceblue;
+}
+
+::ng-deep .p-toolbar-group-right {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2px;
+}
+
+// .p-button .btn {
+//   background-color: #eee;
+// }
+
+.main-container {
+  background-color: #eee;
+}
+
+.btn {
+  margin: 0px 5px 0px 5px;
+}
+
+.address-section {
+  padding: 5px 10px 5px 10px;
+}
+
+.address-field-sec {
+  background-color: white;
+  border-radius: 3px;
+  margin: 3px;
+  display: grid;
+  grid-template-columns: 10% 90%;
+}
+
+.address-field-lbl {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: small;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.attachment-section {
+  background-color: white;
+  text-align: right;
+  border-radius: 3px;
+  margin: 0px 15px 0px 15px;
+}
+
+.attchement-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.body-editor-sec {
+  padding: 5px 15px 5px 15px;
+}
+
+::ng-deep .p-chips .p-chips-multiple-container .p-chips-token {
+  font-size: 0.7rem !important;
+}
+
+.btn {
+  margin-left: 2px;
+}
